@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://ckr1mdbffa5q5"]
+
+[ext_resource type="Theme" uid="uid://ct7s8aarhl2d2" path="res://Resource/theme/mainTheme.tres" id="1_ei3n3"]
+[ext_resource type="Script" uid="uid://dtcabqn4l7igc" path="res://Script/ui/CardUI.cs" id="2_v4vjh"]
+[ext_resource type="Script" uid="uid://do32fmcgetmup" path="res://Script/state/cardState/BaseState.cs" id="3_2tuv3"]
+[ext_resource type="Script" uid="uid://cea4xntghives" path="res://Script/state/base/CardStateMachine.cs" id="3_m0mx3"]
+[ext_resource type="Script" uid="uid://bvmotfooddh6y" path="res://Script/state/cardState/ClickedState.cs" id="4_2tuv3"]
+[ext_resource type="Script" uid="uid://bklft0fb511y" path="res://Script/state/cardState/DraggingState.cs" id="5_2tuv3"]
+[ext_resource type="Script" uid="uid://dhqlvltobe8ux" path="res://Script/state/cardState/ReleasedState.cs" id="6_2tuv3"]
+[ext_resource type="Script" uid="uid://gmenvko2wgn7" path="res://Script/state/cardState/AimingState.cs" id="7_sdu48"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei3n3"]
+size = Vector2(96, 144)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei3n3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(2.1658838e-07, 0.37739065, 0.36403617, 1)
+shadow_color = Color(0.19793725, 0.19793722, 0.19793722, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[node name="CardUi" type="Control" unique_id=1588898670]
+custom_minimum_size = Vector2(96, 144)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 96.0
+offset_bottom = 144.0
+mouse_behavior_recursive = 2
+theme = ExtResource("1_ei3n3")
+script = ExtResource("2_v4vjh")
+
+[node name="DropPointDetector" type="Area2D" parent="." unique_id=1184566721]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector" unique_id=307722916]
+position = Vector2(48, 72)
+shape = SubResource("RectangleShape2D_ei3n3")
+
+[node name="Panel" type="Panel" parent="." unique_id=2126599766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ei3n3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1882168586]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer" unique_id=614366884]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.09803922, 0.4392157, 0.22352941, 1)
+
+[node name="Label" type="Label" parent="Panel/MarginContainer" unique_id=1669444233]
+layout_mode = 2
+theme = ExtResource("1_ei3n3")
+text = "state"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StateMachine" type="Node" parent="." unique_id=1010673241]
+script = ExtResource("3_m0mx3")
+
+[node name="Base" type="Node" parent="StateMachine" unique_id=666733042]
+script = ExtResource("3_2tuv3")
+
+[node name="Clicked" type="Node" parent="StateMachine" unique_id=239952922]
+script = ExtResource("4_2tuv3")
+State = 1
+
+[node name="Dragging" type="Node" parent="StateMachine" unique_id=1251087166]
+script = ExtResource("5_2tuv3")
+State = 2
+
+[node name="Aiming" type="Node" parent="StateMachine" unique_id=60128676]
+script = ExtResource("7_sdu48")
+State = 3
+
+[node name="Released" type="Node" parent="StateMachine" unique_id=2047788902]
+script = ExtResource("6_2tuv3")
+State = 4

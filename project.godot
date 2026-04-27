@@ -1,0 +1,62 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="CardBattle"
+run/main_scene="uid://ddrjh04blhaeu"
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+EventHub="*uid://cqkpkfmfidd22"
+EnemyManager="*uid://s02s6kmvti6"
+GameManager="*uid://b3xvcmiw6xucp"
+
+[display]
+
+window/size/viewport_width=360
+window/size/viewport_height=640
+
+[dotnet]
+
+project/assembly_name="CardBattle"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Asset/": "blue",
+"res://PackedScene/": "orange",
+"res://Resource/": "teal",
+"res://Scene/": "pink",
+"res://Script/": "purple"
+}
+
+[layer_names]
+
+2d_physics/layer_1="Card"
+2d_physics/layer_2="CardDropArea"
+2d_physics/layer_3="Enemy"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
