@@ -35,4 +35,24 @@ public partial class CardPile : Resource
 	{
 		Cards.Shuffle();
 	}
+
+	public void Clear()
+	{
+		Cards.Clear();
+		EmitSignal(SignalName.CardPileSizeChanged, Cards.Count);
+	}
+
+	public override string ToString()
+	{
+
+		var strArr = new string[Cards.Count];
+
+		for (int i = 0; i < Cards.Count; i++)
+		{
+			var card = Cards[i];
+			strArr[i] = $"{i + 1}: {card.Id}";
+		}
+
+		return string.Join("\n", strArr);
+	}
 }
