@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://ddrjh04blhaeu"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://Asset/Sprite/UI/background.png" id="1_t35rp"]
-[ext_resource type="PackedScene" uid="uid://c2mhgslsvlsfm" path="res://PackedScene/character/enemy/Enemy.tscn" id="2_cbsai"]
+[ext_resource type="PackedScene" uid="uid://bkue0qqn7u0t8" path="res://PackedScene/character/enemy/Enemy.tscn" id="2_cbsai"]
 [ext_resource type="PackedScene" uid="uid://ckr1mdbffa5q5" path="res://PackedScene/card/CardUI.tscn" id="2_erfcq"]
 [ext_resource type="Script" uid="uid://despqxl2po1vu" path="res://Script/ui/BattleUI.cs" id="2_flaeg"]
 [ext_resource type="PackedScene" uid="uid://b6jucncqvqo3d" path="res://PackedScene/card/CardTargetSelector.tscn" id="3_r0su0"]
-[ext_resource type="Resource" uid="uid://dlxw3c7cte822" path="res://Resource/characters/warrior/WarriorAxeAttack.tres" id="5_r0su0"]
+[ext_resource type="PackedScene" uid="uid://cl0v558qeua15" path="res://PackedScene/ui/ManaUI.tscn" id="4_7bk8s"]
+[ext_resource type="Resource" uid="uid://dlxw3c7cte822" path="res://Resource/card/warrior/WarriorAxeAttack.tres" id="5_r0su0"]
+[ext_resource type="Resource" uid="uid://dlpvkbgej6d77" path="res://Resource/card/warrior/WarriorBlock.tres" id="6_wcqvn"]
+[ext_resource type="PackedScene" uid="uid://d1h8aan5amnti" path="res://PackedScene/character/player/Player.tscn" id="7_oklq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flaeg"]
 size = Vector2(358, 458)
@@ -35,16 +38,19 @@ monitoring = false
 position = Vector2(135, 198)
 shape = SubResource("RectangleShape2D_flaeg")
 
+[node name="Enemy" parent="." unique_id=1148536425 instance=ExtResource("2_cbsai")]
+position = Vector2(46, 114)
+
+[node name="Enemy2" parent="." unique_id=1411120946 instance=ExtResource("2_cbsai")]
+position = Vector2(281, 116)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1324085445]
 
-[node name="Enemy" parent="." unique_id=1677719768 instance=ExtResource("2_cbsai")]
-position = Vector2(287, 167)
-
-[node name="Enemy2" parent="." unique_id=1719450485 instance=ExtResource("2_cbsai")]
-position = Vector2(71, 166)
-
-[node name="Enemy3" parent="." unique_id=42375930 instance=ExtResource("2_cbsai")]
-position = Vector2(181, 165)
+[node name="ManaUi" parent="." unique_id=1881691542 instance=ExtResource("4_7bk8s")]
+offset_left = 7.0
+offset_top = 238.0
+offset_right = 87.0
+offset_bottom = 278.0
 
 [node name="BattleUI" type="CanvasLayer" parent="." unique_id=473465221 groups=["UiLayer"]]
 script = ExtResource("2_flaeg")
@@ -65,13 +71,17 @@ CardData = ExtResource("5_r0su0")
 
 [node name="CardUi2" parent="BattleUI/CardContainer" unique_id=1781234168 instance=ExtResource("2_erfcq")]
 layout_mode = 2
+CardData = ExtResource("5_r0su0")
 
 [node name="CardUi3" parent="BattleUI/CardContainer" unique_id=558144143 instance=ExtResource("2_erfcq")]
 layout_mode = 2
+CardData = ExtResource("5_r0su0")
 
 [node name="CardUi4" parent="BattleUI/CardContainer" unique_id=45840716 instance=ExtResource("2_erfcq")]
 layout_mode = 2
-CardData = ExtResource("5_r0su0")
+CardData = ExtResource("6_wcqvn")
 
 [node name="CardTargetSelector" parent="BattleUI" unique_id=742807799 instance=ExtResource("3_r0su0")]
-visible = false
+
+[node name="Player" parent="." unique_id=1545050753 instance=ExtResource("7_oklq0")]
+position = Vector2(184, 384)

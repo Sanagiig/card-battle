@@ -10,8 +10,9 @@ public partial class BaseState : CardState
     await base.Init();
 
     CardUI.PivotOffset = Vector2.Zero;
-    CardUI.ColorRect.Color = Colors.WebGreen;
     CardUI.DropPointDetector.Monitoring = false;
+    CardUI.ToNormalStyle();
+
     EventHub.Instance.EmitSignal(EventHub.SignalName.CardResetRequested, CardUI);
 
     EventHub.Instance.CardAimStarted += _OnOtherCardAimStarted;

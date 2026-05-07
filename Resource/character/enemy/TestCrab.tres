@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://ccapheubdos7d"]
+
+[ext_resource type="Script" uid="uid://wcah6mjav4up" path="res://Script/resource/characters/CharacterStats.cs" id="1_3c8bx"]
+[ext_resource type="Resource" uid="uid://byk5ojaflbgko" path="res://Resource/card/enemy/EnemyCardPile.tres" id="1_rwtv8"]
+[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://Asset/Sprite/Character/tile_0110.png" id="1_t1atr"]
+
+[resource]
+script = ExtResource("1_3c8bx")
+StartingDeck = ExtResource("1_rwtv8")
+MaxHealth = 10
+Texture = ExtResource("1_t1atr")

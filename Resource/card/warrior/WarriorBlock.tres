@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://dlpvkbgej6d77"]
+
+[ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://Asset/Sprite/UI/tile_0102.png" id="1_11tbm"]
+[ext_resource type="Script" uid="uid://duo55bujja8jj" path="res://Script/resource/card/SingleBlockCard.cs" id="2_11tbm"]
+
+[resource]
+script = ExtResource("2_11tbm")
+Type = 1
+Amount = 5
+Cost = 1
+Image = ExtResource("1_11tbm")

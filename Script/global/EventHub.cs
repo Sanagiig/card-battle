@@ -2,7 +2,15 @@ using Godot;
 using System;
 
 public partial class EventHub : Node
-{	
+{
+	#region Round Events
+	[Signal]
+	public delegate void RoundStartedEventHandler(BaseCharacter character);
+	[Signal]
+	public delegate void RoundEndedEventHandler(BaseCharacter character);
+
+	#endregion
+
 	#region Card Events
 	[Signal]
 	public delegate void CardResetRequestedEventHandler(CardUI cardUI);
@@ -15,6 +23,12 @@ public partial class EventHub : Node
 
 	[Signal]
 	public delegate void CardAimPositionChangedEventHandler(Vector2 position);
+
+	[Signal]
+	public delegate void AimTargetsChangedEventHandler(BaseCharacter[] targets);
+
+	[Signal]
+	public delegate void CardPlayedEventHandler(Card card);
 
 	#endregion
 

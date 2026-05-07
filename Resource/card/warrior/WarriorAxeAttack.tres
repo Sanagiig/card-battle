@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://dlxw3c7cte822"]
+
+[ext_resource type="Texture2D" uid="uid://ck1t4hdip6xrl" path="res://Asset/Sprite/UI/tile_0119.png" id="1_ejf2j"]
+[ext_resource type="Script" uid="uid://c0veysloqhtng" path="res://Script/resource/card/SingleAttackCard.cs" id="2_tebbu"]
+
+[resource]
+script = ExtResource("2_tebbu")
+Target = 1
+Amount = 2
+Cost = 1
+Image = ExtResource("1_ejf2j")

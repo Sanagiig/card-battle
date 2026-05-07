@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dtd2agbkha4gi"]
+
+[ext_resource type="FontFile" uid="uid://dskmdk146n4rq" path="res://Asset/Sprite/UI/pixel_rpg.ttf" id="1_wesu0"]
+
+[sub_resource type="FontVariation" id="FontVariation_bvc6q"]
+base_font = ExtResource("1_wesu0")
+
+[node name="CostLabel" type="Label" unique_id=361254236]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 25.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("FontVariation_bvc6q")
+text = "2"

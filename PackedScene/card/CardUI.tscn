@@ -3,25 +3,20 @@
 [ext_resource type="Theme" uid="uid://ct7s8aarhl2d2" path="res://Resource/theme/mainTheme.tres" id="1_ei3n3"]
 [ext_resource type="Script" uid="uid://dtcabqn4l7igc" path="res://Script/ui/CardUI.cs" id="2_v4vjh"]
 [ext_resource type="Script" uid="uid://do32fmcgetmup" path="res://Script/state/cardState/BaseState.cs" id="3_2tuv3"]
+[ext_resource type="StyleBox" uid="uid://pcj5t0i313b2" path="res://Resource/card/ui/CardNormalStyle.tres" id="3_bvc6q"]
 [ext_resource type="Script" uid="uid://cea4xntghives" path="res://Script/state/base/CardStateMachine.cs" id="3_m0mx3"]
+[ext_resource type="Texture2D" uid="uid://bq4im540nk025" path="res://Asset/Sprite/UI/tile_0106.png" id="3_mqhpw"]
 [ext_resource type="Script" uid="uid://bvmotfooddh6y" path="res://Script/state/cardState/ClickedState.cs" id="4_2tuv3"]
+[ext_resource type="PackedScene" uid="uid://dtd2agbkha4gi" path="res://PackedScene/card/PxielLabel.tscn" id="4_ql03o"]
 [ext_resource type="Script" uid="uid://bklft0fb511y" path="res://Script/state/cardState/DraggingState.cs" id="5_2tuv3"]
 [ext_resource type="Script" uid="uid://dhqlvltobe8ux" path="res://Script/state/cardState/ReleasedState.cs" id="6_2tuv3"]
 [ext_resource type="Script" uid="uid://gmenvko2wgn7" path="res://Script/state/cardState/AimingState.cs" id="7_sdu48"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ql03o"]
+bg_color = Color(0.53043723, 0.3094438, 0.08875925, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ei3n3"]
 size = Vector2(96, 144)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei3n3"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(2.1658838e-07, 0.37739065, 0.36403617, 1)
-shadow_color = Color(0.19793725, 0.19793722, 0.19793722, 0.6)
-shadow_size = 3
-shadow_offset = Vector2(2, 2)
 
 [node name="CardUi" type="Control" unique_id=1588898670]
 custom_minimum_size = Vector2(96, 144)
@@ -33,47 +28,81 @@ mouse_behavior_recursive = 2
 theme = ExtResource("1_ei3n3")
 script = ExtResource("2_v4vjh")
 
+[node name="CardOuterPanel" type="Panel" parent="." unique_id=2126599766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_bvc6q")
+
+[node name="MarginContainer" type="MarginContainer" parent="CardOuterPanel" unique_id=1882168586]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CardInnerPanel" type="Panel" parent="CardOuterPanel/MarginContainer" unique_id=1371937174]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ql03o")
+
+[node name="CardIcon" type="TextureRect" parent="CardOuterPanel/MarginContainer/CardInnerPanel" unique_id=1595467703]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -37.5
+offset_right = 46.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_mqhpw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StateLabel" type="Label" parent="CardOuterPanel/MarginContainer/CardInnerPanel" unique_id=1669444233]
+layout_mode = 0
+offset_top = 58.0
+offset_right = 92.0
+offset_bottom = 81.0
+theme = ExtResource("1_ei3n3")
+text = "state"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CostLabel" parent="CardOuterPanel/MarginContainer/CardInnerPanel" unique_id=361254236 instance=ExtResource("4_ql03o")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 0.0
+offset_right = -6.0
+offset_bottom = 19.0
+grow_horizontal = 2
+theme = ExtResource("1_ei3n3")
+vertical_alignment = 1
+
 [node name="DropPointDetector" type="Area2D" parent="." unique_id=1184566721]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector" unique_id=307722916]
 position = Vector2(48, 72)
 shape = SubResource("RectangleShape2D_ei3n3")
-
-[node name="Panel" type="Panel" parent="." unique_id=2126599766]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ei3n3")
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1882168586]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer" unique_id=614366884]
-layout_mode = 2
-mouse_filter = 2
-color = Color(0.09803922, 0.4392157, 0.22352941, 1)
-
-[node name="Label" type="Label" parent="Panel/MarginContainer" unique_id=1669444233]
-layout_mode = 2
-theme = ExtResource("1_ei3n3")
-text = "state"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="StateMachine" type="Node" parent="." unique_id=1010673241]
 script = ExtResource("3_m0mx3")

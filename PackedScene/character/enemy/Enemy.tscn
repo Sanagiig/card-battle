@@ -1,20 +1,18 @@
-[gd_scene format=3 uid="uid://c2mhgslsvlsfm"]
+[gd_scene format=3 uid="uid://bkue0qqn7u0t8"]
 
-[ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://Asset/Sprite/Character/tile_0110.png" id="1_mybv5"]
 [ext_resource type="Script" uid="uid://bc4d78ythr48g" path="res://Script/character/Enemy.cs" id="1_ys52w"]
+[ext_resource type="Resource" uid="uid://ccapheubdos7d" path="res://Resource/character/enemy/TestCrab.tres" id="2_bpojo"]
+[ext_resource type="Texture2D" uid="uid://2egbj0w2asc2" path="res://Asset/Sprite/UI/expose.png" id="2_k4yhd"]
+[ext_resource type="PackedScene" uid="uid://cgbvq7uvubv4s" path="res://PackedScene/ui/StatusUI.tscn" id="4_uvsgs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys52w"]
-size = Vector2(52, 52)
-
-[node name="Enemy" type="Node2D" unique_id=1677719768]
+[node name="Enemy" type="Node2D" unique_id=1148536425 groups=["Enemy"]]
 script = ExtResource("1_ys52w")
+CharacterStats = ExtResource("2_bpojo")
 
-[node name="BodySprite" type="Sprite2D" parent="." unique_id=165222629]
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=66929674]
 scale = Vector2(3, 3)
-texture = ExtResource("1_mybv5")
+texture = ExtResource("2_k4yhd")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1848520716]
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1138220906]
-shape = SubResource("RectangleShape2D_ys52w")
+[node name="StatusUi" parent="." unique_id=1443101832 instance=ExtResource("4_uvsgs")]
+offset_top = 41.0
+offset_bottom = 41.0

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d1h8aan5amnti"]
+
+[ext_resource type="Texture2D" uid="uid://cpydvk8mq66o5" path="res://Asset/Sprite/Character/tile_0087.png" id="1_1pwpk"]
+[ext_resource type="Script" uid="uid://d0fn1w8n8uobi" path="res://Script/character/Player.cs" id="1_5i3j8"]
+[ext_resource type="PackedScene" uid="uid://cgbvq7uvubv4s" path="res://PackedScene/ui/StatusUI.tscn" id="2_5i3j8"]
+[ext_resource type="Resource" uid="uid://cm7bf4y2w32pj" path="res://Resource/character/player/Warrior.tres" id="2_ihtkt"]
+
+[node name="Player" type="Node2D" unique_id=1148536425 groups=["Player"]]
+script = ExtResource("1_5i3j8")
+CharacterStats = ExtResource("2_ihtkt")
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=66929674]
+scale = Vector2(3, 3)
+texture = ExtResource("1_1pwpk")
+
+[node name="StatusUi" parent="." unique_id=1443101832 instance=ExtResource("2_5i3j8")]
+offset_top = 41.0
+offset_bottom = 41.0

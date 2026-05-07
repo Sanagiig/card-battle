@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyStats : Resource
+public partial class Stats : Resource
 {
 	[Signal]
 	public delegate void StatsChangedEventHandler();
@@ -15,6 +15,7 @@ public partial class EnemyStats : Resource
 	[Export]
 	public Texture2D Texture;
 
+	[Export]
 	public int Health
 	{
 		get => _Health;
@@ -25,6 +26,7 @@ public partial class EnemyStats : Resource
 	}
 	private int _Health;
 
+	[Export]
 	public int Block
 	{
 		get => _Block;
@@ -41,6 +43,11 @@ public partial class EnemyStats : Resource
 		EmitSignal(SignalName.StatsChanged);
 	}
 
+	public void AddBlock(int block)
+	{
+		Block += block;
+	}
+
 	public void SetBlock(int block)
 	{
 		_Block = Mathf.Clamp(block, 0, MaxBlock);
@@ -49,15 +56,16 @@ public partial class EnemyStats : Resource
 
 	public void TakeDamage(int damage)
 	{
-		if(damage <= 0) return;
+		if (damage <= 0) return;
 
 		var finalDamage = Mathf.Max(damage - Block, 0);
 		Block = Mathf.Max(Block - damage, 0);
 		Health -= finalDamage;
 	}
 
-	public EnemyStats CreateInstance(){
-		var instance = Duplicate() as EnemyStats;
+	public virtual Stats CreateInstance()
+	{
+		var instance = Duplicate() as Stats;
 
 		instance._Health = instance.MaxHealth;
 		instance._Block = 0;

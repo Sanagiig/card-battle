@@ -155,7 +155,7 @@ public partial class CardTargetSelector : Node2D
 		}
 
 		AnimateUpdateArrowPos(enemyTargetPos);
-		
+
 		for (int i = 0; i < 20; i++)
 		{
 			var t = i / 20f;
@@ -163,7 +163,9 @@ public partial class CardTargetSelector : Node2D
 			CardArc.AddPoint(point);
 		}
 
+		EventHub.Instance.EmitSignal(EventHub.SignalName.AimTargetsChanged, [enemy]);
 		_CurTargetEnemy = enemy;
+		CurUsingCard.CardData.CardTargetCharacters = [enemy];
 	}
 
 	public void AnimateUpdateArrowPos(Vector2 pos)

@@ -1,17 +1,17 @@
 using Godot;
 using System;
 
-public partial class Enemy : Node2D
+public partial class Enemy : BaseCharacter
 {
-	public Sprite2D BodySprite { get; protected set; }
 
 	public override void _EnterTree()
 	{
-		BodySprite ??= GetNode<Sprite2D>("BodySprite");
+		base._EnterTree();
 	}
 
 	public override void _Ready()
 	{
+		base._Ready();
 		EventHub.Instance.EmitSignal(EventHub.SignalName.EnemySpawned, this);
 	}
 

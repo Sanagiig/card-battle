@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://cm7bf4y2w32pj"]
+
+[ext_resource type="Resource" uid="uid://dud46uoeglp0u" path="res://Resource/card/warrior/WarriorStartingDeck.tres" id="1_p4nmi"]
+[ext_resource type="Texture2D" uid="uid://cpydvk8mq66o5" path="res://Asset/Sprite/Character/tile_0087.png" id="1_y4j7f"]
+[ext_resource type="Script" uid="uid://wcah6mjav4up" path="res://Script/resource/characters/CharacterStats.cs" id="2_p4nmi"]
+
+[resource]
+script = ExtResource("2_p4nmi")
+StartingDeck = ExtResource("1_p4nmi")
+MaxHealth = 32
+Texture = ExtResource("1_y4j7f")

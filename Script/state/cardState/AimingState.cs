@@ -10,13 +10,15 @@ public partial class AimingState : CardState
 		await Init();
 
 		_IsMotionInDropArea = false;
+
+		CardUI.ToAimingStyle();
+
 		EventHub.Instance.GlobalMotionEnteredDropArea += _OnMotionEnteredDropArea;
 		EventHub.Instance.GlobalMotionExitedDropArea += _OnMotionExitedDropArea;
 
+		EventHub.Instance.AimTargetsChanged += _OnAimTargetsChanged;
 		AimStart();
 		GameManager.Instance.CurUsingCard = CardUI;
-
-
 	}
 
 	public override void Update(double delta)
@@ -82,6 +84,11 @@ public partial class AimingState : CardState
 		_IsMotionInDropArea = false;
 	}
 
+	private void _OnAimTargetsChanged(BaseCharacter[] targets)
+	{
+		CardUI.CardData.CardTargetCharacters = targets;
+	}
+
 	#region Aim Logic
 	public async void AimStart()
 	{
@@ -90,8 +97,6 @@ public partial class AimingState : CardState
 
 		offset.X -= CardUI.Size.X / 2;
 		offset.Y += cardContainer.GlobalPosition.Y;
-
-		CardUI.ColorRect.Color = Colors.WebPurple;
 
 		await CardUI.AnimateToPosition(offset, 0.2f);
 		EventHub.Instance.EmitSignal(EventHub.SignalName.CardAimStarted, CardUI);

@@ -1,15 +1,28 @@
 using Godot;
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 
 public partial class CardUI : Control
 {
+	private static StyleBoxFlat CardNormalStyle = ResourceLoader.Load<StyleBoxFlat>("res://Resource/card/ui/CardNormalStyle.tres");
+
+	private static StyleBoxFlat CardDragStyle = ResourceLoader.Load<StyleBoxFlat>("res://Resource/card/ui/CardDragStyle.tres");
+
+	private static StyleBoxFlat CardAimingStyle = ResourceLoader.Load<StyleBoxFlat>("res://Resource/card/ui/CardAimingStyle.tres");
+
 	[Export]
 	public Card CardData;
 
-	public ColorRect ColorRect { get; private set; }
+	public Panel CardOuterPanel { get; private set; }
+
+	public Panel CardInnerPanel { get; private set; }
 
 	public Label StateLabel { get; private set; }
+
+	public Label CostLabel { get; private set; }
+
+	public TextureRect CardIcon { get; private set; }
 
 	public Area2D DropPointDetector { get; private set; }
 
@@ -21,8 +34,13 @@ public partial class CardUI : Control
 
 	public override void _EnterTree()
 	{
-		ColorRect ??= GetNode<ColorRect>("Panel/MarginContainer/ColorRect");
-		StateLabel ??= GetNode<Label>("Panel/MarginContainer/Label");
+		CardOuterPanel ??= GetNode<Panel>("CardOuterPanel");
+		CardOuterPanel ??= GetNode<Panel>("CardOuterPanel/MarginContainer/CardInnerPanel");
+
+		StateLabel ??= GetNode<Label>("CardOuterPanel/MarginContainer/CardInnerPanel/StateLabel");
+		CostLabel ??= GetNode<Label>("CardOuterPanel/MarginContainer/CardInnerPanel/CostLabel");
+
+		CardIcon ??= GetNode<TextureRect>("CardOuterPanel/MarginContainer/CardInnerPanel/CardIcon");
 		DropPointDetector ??= GetNode<Area2D>("DropPointDetector");
 		StateMachine ??= GetNode<CardStateMachine>("StateMachine");
 		CardContainer ??= GetParent<HBoxContainer>();
@@ -39,6 +57,12 @@ public partial class CardUI : Control
 	{
 		// GD.Print($"[CardUI] Ready");
 		StateMachine.InitStates(this);
+		if (CardData == null)
+		{
+			GD.PrintErr($"[CardUI] CardData is null");
+			return;
+		}
+		SetCardData(CardData);
 	}
 
 	public override void _ExitTree()
@@ -62,6 +86,7 @@ public partial class CardUI : Control
 		StateMachine.OnGuiInputEvent(@event);
 	}
 
+	#region  Events
 	public void OnAreaEntered(Area2D area)
 	{
 		GD.Print($"[CardUI] AreaEntered {area.Name}");
@@ -79,6 +104,7 @@ public partial class CardUI : Control
 			IsOnDropArea = false;
 		}
 	}
+	#endregion
 
 	#region Assets
 	public bool MustChooseTarget()
@@ -88,6 +114,14 @@ public partial class CardUI : Control
 	#endregion
 
 	#region Action
+	public void SetCardData(Card card)
+	{
+		CardData = card;
+		// StateLabel.Text = "";
+		CostLabel.Text = card.Cost.ToString();
+		CardIcon.Texture = card.Image;
+	}
+
 	public async Task AnimateToPosition(Vector2 pos, float duration = 0.5f)
 	{
 		var tween = GetTree().CreateTween();
@@ -96,6 +130,27 @@ public partial class CardUI : Control
 			.SetEase(Tween.EaseType.InOut);
 
 		await ToSignal(tween, Tween.SignalName.Finished);
+	}
+
+	public void ToNormalStyle()
+	{
+		CardOuterPanel.AddThemeStyleboxOverride("panel", CardNormalStyle); ;
+	}
+
+	public void ToDragStyle()
+	{
+		CardOuterPanel.AddThemeStyleboxOverride("panel", CardDragStyle);
+	}
+
+	public void ToAimingStyle()
+	{
+		CardOuterPanel.AddThemeStyleboxOverride("panel", CardAimingStyle);
+	}
+
+	public void Play()
+	{
+		CardData.Apply();
+		QueueFree();
 	}
 	#endregion
 }

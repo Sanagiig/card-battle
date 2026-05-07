@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cgbvq7uvubv4s"]
+
+[ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://Asset/Sprite/UI/tile_0102.png" id="1_4uw8t"]
+[ext_resource type="Script" uid="uid://b558v1y6c33u5" path="res://Script/ui/StatusUi.cs" id="1_p7a2f"]
+[ext_resource type="Theme" uid="uid://ct7s8aarhl2d2" path="res://Resource/theme/mainTheme.tres" id="1_pnqvg"]
+[ext_resource type="Texture2D" uid="uid://d0edy7thj8ce6" path="res://Asset/Sprite/UI/heart.png" id="2_pnqvg"]
+
+[node name="StatusUi" type="Control" unique_id=1443101832]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -603.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p7a2f")
+
+[node name="Box" type="HBoxContainer" parent="." unique_id=314030008]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+theme = ExtResource("1_pnqvg")
+alignment = 1
+
+[node name="BlockBox" type="HBoxContainer" parent="Box" unique_id=330842722]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="Box/BlockBox" unique_id=753709146]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("1_4uw8t")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Box/BlockBox" unique_id=1419039618]
+layout_mode = 2
+size_flags_vertical = 1
+text = "6"
+vertical_alignment = 1
+
+[node name="HealthBox" type="HBoxContainer" parent="Box" unique_id=1165227437]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="Box/HealthBox" unique_id=1878645466]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+texture = ExtResource("2_pnqvg")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Box/HealthBox" unique_id=1482662190]
+layout_mode = 2
+size_flags_vertical = 1
+text = "4"
+vertical_alignment = 1

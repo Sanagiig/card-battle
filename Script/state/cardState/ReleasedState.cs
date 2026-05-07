@@ -9,7 +9,6 @@ public partial class ReleasedState : CardState
 	{
 		base.Enter();
 		await base.Init();
-		CardUI.ColorRect.Color = Colors.Blue;
 		CardUI.DropPointDetector.Monitoring = true;
 	}
 
@@ -55,7 +54,7 @@ public partial class ReleasedState : CardState
 		if (CardUI.IsOnDropArea)
 		{
 			// todo - play release animation
-			CardUI.QueueFree();
+			CardUI.Play();
 		}
 		else
 		{

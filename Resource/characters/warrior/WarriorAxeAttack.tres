@@ -1,7 +1,0 @@
-[gd_resource type="Resource" format=3 uid="uid://dlxw3c7cte822"]
-
-[ext_resource type="Script" uid="uid://b2wb0ggq1nubb" path="res://Script/resource/Card.cs" id="1_73tp1"]
-
-[resource]
-script = ExtResource("1_73tp1")
-Target = 1

@@ -7,8 +7,7 @@ public partial class ClickedState : CardState
 	{
 		base.Enter();
 		await base.Init();
-
-		CardUI.ColorRect.Color = Colors.Orange;
+		CardUI.ToDragStyle();
 	}
 
 	public override void Update(double delta)

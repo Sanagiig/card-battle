@@ -10,7 +10,6 @@ public partial class DraggingState : CardState
 		await base.Init();
 
 		CardUI.DropPointDetector.Monitoring = true;
-		CardUI.ColorRect.Color = Colors.Pink;
 
 		var uiLayer = GetTree().GetFirstNodeInGroup("UiLayer");
 		if (uiLayer == null)

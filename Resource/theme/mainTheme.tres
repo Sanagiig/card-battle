@@ -1,4 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://ct7s8aarhl2d2"]
 
+[ext_resource type="FontFile" uid="uid://dskmdk146n4rq" path="res://Asset/Sprite/UI/pixel_rpg.ttf" id="1_tmgrd"]
+
 [resource]
+default_font = ExtResource("1_tmgrd")
 default_font_size = 16
